@@ -1,7 +1,6 @@
 package ua.nure.tkp.trainingday.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,14 +8,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ua.nure.tkp.trainingday.entity.User;
 import ua.nure.tkp.trainingday.entity.dto.UserDto;
-import ua.nure.tkp.trainingday.repository.UserRepo;
+import ua.nure.tkp.trainingday.service.LoginUserService;
 
 @Controller
 @RequestMapping("/auth")
 public class LoginController {
+    private final LoginUserService userService;
 
     @Autowired
-    UserRepo userRepo;
+    public LoginController(LoginUserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping(value = "/login")
     public String getLoginPage() {
@@ -36,9 +38,7 @@ public class LoginController {
 
     @PostMapping("/register")
     public String processRegister(UserDto user) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(12);
-        User entity = new User(user.getLogin(), passwordEncoder.encode(user.getPassword()), user.getAge(), user.getNickname());
-        userRepo.save(entity);
+        userService.saveNewUser(user);
         return "redirect:/home";
     }
 }
