@@ -52,4 +52,5 @@ public class MainController {
         model.addAttribute("program", program);
         return "details";
     }
+
 }

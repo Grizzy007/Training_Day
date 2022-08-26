@@ -87,4 +87,5 @@ public class AdminController {
         programService.changeStatus(program, "ACCEPTED", id);
         return "redirect:/verify";
     }
+
 }
