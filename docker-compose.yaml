@@ -1,0 +1,23 @@
+version: '3'
+services:
+  db:
+    image: db-td
+    container_name: td_mysql
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: "Agent8998Agent_007"
+      MYSQL_DATABASE: "training_day"
+    restart: always
+  app:
+    image: td-app
+    container_name: app
+    ports:
+      - "8080:8080"
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:mysql://td_mysql/training_day"
+    depends_on:
+      - db
