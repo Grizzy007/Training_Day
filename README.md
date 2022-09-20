@@ -6,4 +6,4 @@
  - Authorized users can follow all avalible programs on site.
  - Admin with trainer verifing a program and made decision about posting program.
  - Also admin can edit exist programs and add program from trainers withot verifing for users on site.
-###Project deployed on Heroku: [https://trainingdayapp.herokuapp.com/](Training day) 
+###Project deployed on Heroku: [https://trainingdayapp.herokuapp.com/] (Training day) 
