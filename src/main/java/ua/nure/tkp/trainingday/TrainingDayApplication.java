@@ -9,7 +9,7 @@ public class TrainingDayApplication {
 
     public static void main(String[] args) {
        Flyway flyway = Flyway.configure()
-               .dataSource("jdbc:mysql://localhost/training_day", "root", "Agent8998Agent_007")
+               .dataSource("jdbc:mysql://localhost/training_day", "root", "root")
                .baselineOnMigrate(true)
                .locations("db/migration")
                .load();
