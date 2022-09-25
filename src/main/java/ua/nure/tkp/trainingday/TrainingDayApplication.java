@@ -8,12 +8,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class TrainingDayApplication {
 
     public static void main(String[] args) {
-//        Flyway flyway = Flyway.configure()
-//                .dataSource("jdbc:mysql://localhost/training_day", "root", "Agent8998Agent_007")
-//                .baselineOnMigrate(true)
-//                .locations("db/migration")
-//                .load();
-//        flyway.migrate();
+       Flyway flyway = Flyway.configure()
+               .dataSource("jdbc:mysql://localhost/training_day", "root", "Agent8998Agent_007")
+               .baselineOnMigrate(true)
+               .locations("db/migration")
+               .load();
+       flyway.migrate();
         SpringApplication.run(TrainingDayApplication.class, args);
     }
 
