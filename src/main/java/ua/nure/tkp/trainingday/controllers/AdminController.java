@@ -57,7 +57,7 @@ public class AdminController {
         return "verify";
     }
 
-    @GetMapping(value = "/add_program")
+    @GetMapping(value = "/add-program")
     @PreAuthorize("hasAuthority('write')")
     public String addProgramPage(Model model) {
         model.addAttribute("trainers", trainerService.getAll());
@@ -65,7 +65,7 @@ public class AdminController {
         return "addProgram";
     }
 
-    @PostMapping("/add_program")
+    @PostMapping("/add-program")
     @PreAuthorize("hasAuthority('write')")
     public String processRegister(Program program) {
         programService.addNewProgram(program);
