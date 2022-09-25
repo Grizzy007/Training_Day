@@ -30,13 +30,13 @@ public class MainController {
         return "programs";
     }
 
-    @GetMapping(value = "/suggest_program")
+    @GetMapping(value = "/suggest-program")
     @PreAuthorize("hasAuthority('read')")
     public String suggestProgram() {
         return "suggestProgram";
     }
 
-    @PostMapping(value = "/suggest_program")
+    @PostMapping(value = "/suggest-program")
     @PreAuthorize("hasAuthority('read')")
     public String createProgram(@RequestParam String name, @RequestParam String description,
                                 @RequestParam Integer duration, @RequestParam String muscleGroup) {
