@@ -26,3 +26,4 @@ public class UserDetailsSecurityImpl implements UserDetailsService {
         return SecurityUser.fromUser(user);
     }
 }
+

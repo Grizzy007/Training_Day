@@ -10,3 +10,4 @@ public interface TrainerRepo extends JpaRepository<Trainer,Integer> {
             nativeQuery = true)
     Iterable<Trainer> getTrainerByCountOfPrograms();
 }
+

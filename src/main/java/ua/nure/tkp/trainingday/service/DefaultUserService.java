@@ -34,3 +34,4 @@ public class DefaultUserService implements UserService {
         userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
     }
 }
+
