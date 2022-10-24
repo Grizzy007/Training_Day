@@ -26,5 +26,4 @@ public class LoginUserService {
         userRepo.save(newUser);
         LOGGER.info("New user registered {}", newUser.getNickname());
     }
-
 }

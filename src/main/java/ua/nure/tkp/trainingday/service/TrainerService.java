@@ -18,5 +18,4 @@ public class TrainerService {
         return trainerRepo.findAll();
     }
 
-
 }

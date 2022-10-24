@@ -49,3 +49,4 @@ public class Trainer {
         this.category = category;
     }
 }
+

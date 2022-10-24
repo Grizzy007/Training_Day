@@ -5,5 +5,6 @@ import ua.nure.tkp.trainingday.entity.User;
 public interface UserService {
     void register(User user) throws Exception;
 
+
     boolean checkIfUserExist(String login);
 }
