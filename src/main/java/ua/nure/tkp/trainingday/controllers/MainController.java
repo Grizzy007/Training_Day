@@ -1,12 +1,21 @@
 package ua.nure.tkp.trainingday.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ua.nure.tkp.trainingday.entity.Program;
 import ua.nure.tkp.trainingday.service.ProgramService;
+
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Controller
 @RequestMapping(value = "/")
@@ -24,9 +33,17 @@ public class MainController {
     }
 
     @GetMapping(value = "/catalog")
-    public String catalog(Model model) {
-        Iterable<Program> catalog = programService.getByStatus("ACCEPTED");
+    public String catalog(
+            Model model,
+            @RequestParam(value = "size", required = false, defaultValue = "5") Integer size,
+            @RequestParam(value = "page", required = false, defaultValue = "0") Integer page) {
+        Page<Program> catalog = programService.getByStatus("ACCEPTED", PageRequest.of(page, size));
         model.addAttribute("programs", catalog);
+        catalog.stream().toList();
+        List<Integer> pageNumbers = IntStream.rangeClosed(1, catalog.getTotalPages())
+                .boxed()
+                .collect(Collectors.toList());
+        model.addAttribute("nums", pageNumbers);
         return "programs";
     }
 

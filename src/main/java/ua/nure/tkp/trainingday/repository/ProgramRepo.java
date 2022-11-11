@@ -8,4 +8,5 @@ import ua.nure.tkp.trainingday.entity.Program;
 public interface ProgramRepo extends CrudRepository<Program, Integer> {
     Iterable<Program> findProgramsByStatusName(String s);
     Page<Program> findAll(Pageable pageable);
+    Page<Program> findByStatusName(String name, Pageable pageable);
 }
