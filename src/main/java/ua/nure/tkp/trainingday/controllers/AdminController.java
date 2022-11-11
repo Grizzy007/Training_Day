@@ -1,6 +1,9 @@
 package ua.nure.tkp.trainingday.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ua.nure.tkp.trainingday.entity.Program;
 import ua.nure.tkp.trainingday.service.ProgramService;
 import ua.nure.tkp.trainingday.service.TrainerService;
+
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Controller
 public class AdminController {
@@ -51,9 +58,16 @@ public class AdminController {
 
     @GetMapping(value = "/verify")
     @PreAuthorize("hasAuthority('write')")
-    public String programToVerify(Model model) {
-        Iterable<Program> all = programService.getByStatus("NEW");
+    public String programToVerify(
+            Model model,
+            @RequestParam(value = "size", required = false, defaultValue = "5") Integer size,
+            @RequestParam(value = "page", required = false, defaultValue = "0") Integer page) {
+        Page<Program> all = programService.getByStatus("NEW", PageRequest.of(page,size));
         model.addAttribute("programs", all);
+        List<Integer> pageNumbers = IntStream.rangeClosed(1, all.getTotalPages())
+                .boxed()
+                .collect(Collectors.toList());
+        model.addAttribute("nums", pageNumbers);
         return "verify";
     }
 
@@ -87,6 +101,4 @@ public class AdminController {
         programService.changeStatus(program, "ACCEPTED", id);
         return "redirect:/verify";
     }
-
-
 }

@@ -20,7 +20,7 @@
             <th>Decision</th>
             </thead>
             <tbody>
-            <div th:each="program:${programs}">
+            <div th:each="program:${programs.content}">
                 <tr>
                     <td th:text="${program.name}"/>
                     <td th:text="${program.duration}"/>
@@ -46,6 +46,14 @@
         </table>
     </div>
     <div class="after-table"></div>
+    <div class="pag">
+        <div  class="pagination"
+             th:each="pageNumber : ${nums}">
+            <a th:href="@{/verify(size=${programs.size}, page=${pageNumber - 1})}"
+               th:text="${pageNumber}"
+               th:class="${pageNumber==programs.number} ? active"></a>
+        </div>
+    </div>
 </div>
 <div th:insert="fragments/footer.html::footer"></div>
 </body>

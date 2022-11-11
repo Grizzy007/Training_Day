@@ -3,6 +3,8 @@ package ua.nure.tkp.trainingday.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ua.nure.tkp.trainingday.entity.Program;
 import ua.nure.tkp.trainingday.entity.dto.ProgramDto;
@@ -45,8 +47,12 @@ public class ProgramService {
         return entity;
     }
 
-    public Iterable<Program> getByStatus(String status) {
-        return programRepo.findProgramsByStatusName(status);
+    public Page<Program> getByStatus(String status, Pageable pageable) {
+        return programRepo.findByStatusName(status, pageable);
+    }
+
+    public Page<Program> getAll(Pageable pageable) {
+        return programRepo.findAll( pageable);
     }
 
     public void changeStatus(Program program, String status, Integer id) {

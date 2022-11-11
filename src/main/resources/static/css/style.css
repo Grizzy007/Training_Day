@@ -211,4 +211,58 @@ th,td{
 .change a:active{
     color: goldenrod;
 }
+.pag {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+.pagination_section {
+    display: flex;
+    justify-content: center;
+}
 
+.pagination_section a {
+    color: black;
+    padding: 10px 18px;
+    text-decoration: none;
+}
+
+.pagination_section a:hover:not(.active) {
+    background-color: #031F3B;
+    color: white;
+}
+
+a:nth-child(5) {
+    background-color: green;
+    color: white;
+}
+
+a:nth-child(1) {
+    font-weight: bold;
+}
+
+a:nth-child(7) {
+    font-weight: bold;
+}
+
+.pagination {
+    display: inline-block;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+    border-radius: 5px;
+}
