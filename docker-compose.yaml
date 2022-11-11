@@ -21,4 +21,3 @@ services:
       SPRING_DATASOURCE_URL: "jdbc:mysql://td_mysql/training_day"
     depends_on:
       - db
-
